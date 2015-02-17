@@ -8,12 +8,17 @@
 	class Zadanie1 {
 		private $conn;
 
-		public function __construct($count) {
+		public function __construct($flag_table, $flag_generate, $count = 15) {
 			$dbconn = new Database();
-			$this->conn = $dbconn->connect();
+			$this->conn = $dbconn->dbconnect();
 			if($this->conn) {
-				$this->createDbTable($this->conn);
-				//$this->generateNodes($count);
+				if($flag_table == true) {
+					$this->createDbTable($this->conn);
+				}
+
+				if($flag_generate == true) {
+					$this->generateNodes($count);
+				}
 				$this->showTree();
 			}
 		}
@@ -58,6 +63,7 @@
 
 		public function getChild($id) {
 			$child = array();
+			$id = $this->conn->real_escape_string($id);
 			$result = $this->conn->query("SELECT * FROM zad1 WHERE parent_id = $id;");
 			if($result) {
 				while($row = $result->fetch_assoc()) {
@@ -69,11 +75,32 @@
 		}
 
 		private function addParent() {
-			$result = $this->conn->query("INSERT INTO zad1 VALUES('','Parent', NULL);");
+			$parent_name = $this->findNth(true);
+			$result = $this->conn->query("INSERT INTO zad1 VALUES('', '$parent_name', NULL);");
 		}
 
 		private function addChild($parent) {
-			$this->conn->query("INSERT INTO zad1 VALUES('', 'Child', $parent);");
+			$parent = $this->conn->real_escape_string($parent);
+			//$child_name = $this->conn->real_escape_string("Child ".$n);
+			$child_name = $this->findNth();
+			$this->conn->query("INSERT INTO zad1 VALUES('', '$child_name', '$parent');");
+		}
+
+		private function findNth($isParent = false) {
+			$query = "IS NOT NULL";
+			if($isParent == true) {
+				$query = "IS NULL";
+			}
+
+			$result = $this->conn->query("SELECT * FROM zad1 WHERE parent_id $query");
+			$n = $result->num_rows + 1;
+
+			if($isParent == true) {
+				return $name = $this->conn->real_escape_string("Parent ".$n);
+			}
+			else {
+				return $name = $this->conn->real_escape_string("Child ".$n);
+			}
 		}
 
 		private function showTree() {
@@ -92,9 +119,11 @@
 		}
 	}
 
-	$a = new Zadanie1(10);
-	$a->getChild(73);
 
+// Pierwszy parametr - stworzenie tabeli
+// Drugi parametr - generowanie elementów drzewa
+// Trzeci parametr - ilośc elementów do wygenerowania
+	$a = new Zadanie1(true, true, 20);
 
 
 ?>
