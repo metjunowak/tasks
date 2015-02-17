@@ -59,9 +59,12 @@
 		public function getChild($id) {
 			$child = array();
 			$result = $this->conn->query("SELECT * FROM zad1 WHERE parent_id = $id;");
-			while($row = $result->fetch_assoc()) {
-				$child[] = array('name' =>$row['name'], 'children' => '');
-			};
+			if($result) {
+				while($row = $result->fetch_assoc()) {
+					$next_child = $this->getChild($row['id']);
+					$child[] = array('name' =>$row['name'], 'children' => $next_child);
+				}
+			}
 			return $child;
 		}
 
