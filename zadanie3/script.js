@@ -1,25 +1,61 @@
 $(document).ready(function() {
+
+	var isSelected = $('select').val();
+	if(isSelected == 0) {
+			$('.go-to-step2').hide();
+		}
+		else {
+			$('.go-to-step2').show();
+		}
+
+	$('select').change(function() {
+		isSelected = $(this).val();
+		if(isSelected == 0) {
+			$('.go-to-step2').hide();
+		}
+		else {
+			$('.go-to-step2').show();
+		}
+	});
+
 	$('.show-new-company').click(function() {
 		$('#new-company').toggle('slide');
 		$('#choose-firm').toggle('slide');
+		$('.go-to-step2').show();
+		isSelected = 0;
+		$('select').val(0);
 	});
 
 	$('.show-choose-firm').click(function() {
 		$('#new-company').toggle('slide');
 		$('#choose-firm').toggle('slide');
+		if(isSelected == 0) {
+			$('.go-to-step2').hide();
+		}
+		else {
+			$('.go-to-step2').show();
+		}
 	});
 
 	$('.go-to-step2').click(function() {
 		$('#new-company').hide('slide');
 		$('#choose-firm').hide('slide');
 		$('#new-employee').show('slide');
+		$('#summary-form').hide('slide');
 		$('.form-header').text('Krok 2 - dane pracownika');
 	});
 
 	$('.go-to-step1').click(function() {
-		$('#new-company').show('slide');
-		$('#choose-firm').hide('slide');
+		if(isSelected == 0) {
+			$('#new-company').show('slide');
+			$('#choose-firm').hide('slide');
+		}
+		else {
+			$('#new-company').hide('slide');
+			$('#choose-firm').show('slide');
+		}
 		$('#new-employee').hide('slide');
+		$('#summary-form').hide('slide');
 		$('.form-header').text('Krok 1 - dane firmy');
 	});
 
@@ -27,5 +63,40 @@ $(document).ready(function() {
 		$('#summary-form').show('slide');
 		$('#new-employee').hide('slide');
 		$('.form-header').text('Krok 3 - podsumowanie');
+
+		var formEmployeeValues = new Array();
+		$("#new-employee input").each(function() {
+			formEmployeeValues.push($(this).val());
+		});
+
+		var i = 0;
+		$('#summary-form .employee input').each(function() {
+			$(this).val(formEmployeeValues[i]);
+			i++;
+		});
+
+		if(isSelected == 0) {
+			$('#summary-form .company .more').show();
+			var formCompanyValues = new Array();
+			$("#new-employee input").each(function() {
+				formCompanyValues.push($(this).val());
+			});
+			$('#summary-form .company .more input').each(function() {
+				$(this).val(formCompanyValues[i]);
+				$(this).removeAttr('disabled');
+				$(this).attr('readonly', 'readonly');
+				i++;
+			});
+			$('#sumCompanyNameSelId').attr('disabled', 'disabled');
+		}
+		else {
+			$('#summary-form .company .less').show();
+			$('#summary-form .company .less #sumCompanyNameSel').val($('select :selected').text());
+			$('#summary-form .company .less #sumCompanyNameSelId').val(isSelected);
+			$('#sumCompanyNameSelId').removeAttr('disabled');		
+			$('#summary-form .company .more input').each(function() {
+				$(this).attr('disabled', 'disabled');
+			});
+		}
 	});
 });
