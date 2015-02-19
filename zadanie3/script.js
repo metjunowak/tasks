@@ -75,10 +75,11 @@ $(document).ready(function() {
 			i++;
 		});
 
+		var i = 0;
 		if(isSelected == 0) {
 			$('#summary-form .company .more').show();
 			var formCompanyValues = new Array();
-			$("#new-employee input").each(function() {
+			$("#new-company input").each(function() {
 				formCompanyValues.push($(this).val());
 			});
 			$('#summary-form .company .more input').each(function() {
@@ -99,4 +100,9 @@ $(document).ready(function() {
 			});
 		}
 	});
+
+	$('.date').mask('0000/00/00');
+	$('.nip').mask('000-000-00-00');
+	$('.regon').mask('000000000');
+
 });

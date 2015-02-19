@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+	<meta charset="utf-8">
 	<title>Zadanie 3</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/v4.0.0/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -38,7 +40,7 @@
 							</div>
 							<div class="form-group">
 								<label for="establishDate">Data powstania</label>
-								<input type="text" class="form-control" id="establishDate" placeholder="Data powstania">
+								<input type="text" class="form-control date" id="establishDate" placeholder="YYY/MM/DD">
 							</div>
 							<div class="form-group">
 								<label for="companyCity">Miasto</label>
@@ -46,11 +48,11 @@
 							</div>
 							<div class="form-group">
 								<label for="companyNip">Nip</label>
-								<input type="text" class="form-control" id="companyNip" placeholder="Nip">
+								<input type="text" class="form-control nip" id="companyNip" placeholder="Nip">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Regon</label>
-								<input type="text" class="form-control" id="companyRegon" placeholder="Regon">
+								<input type="text" class="form-control regon" id="companyRegon" placeholder="Regon">
 							</div>
 							<button type="button" class="btn btn-success go-to-step2">Krok 2 &raquo;</button>
 						</div>
@@ -67,11 +69,11 @@
 							</div>
 							<div class="form-group">
 								<label for="dateOfBirth">Data urodzenia</label>
-								<input type="text" class="form-control" id="dateOfBirth" placeholder="Data urodzenia">
+								<input type="text" class="form-control date" id="dateOfBirth" placeholder="YYYY/MM/DD">
 							</div>
 							<div class="form-group">
 								<label for="joinDate">Data przyjęcia do firmy</label>
-								<input type="text" class="form-control" id="joinDate" placeholder="Data przyjęcia">
+								<input type="text" class="form-control date" id="joinDate" placeholder="YYYY/MM/DD">
 							</div>
 							<button type="button" class="btn btn-danger go-to-step1">&laquo; Krok 1</button>
 							<button type="button" class="btn btn-success go-to-step3">Krok 3 &raquo;</button>
@@ -120,11 +122,11 @@
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Data urodzenia</label>
-									<input type="text" class="form-control" id="sumDoB" name="sumDoB" readonly="readonly">
+									<input type="text" class="form-control datepicker" id="sumDoB" name="sumDoB" readonly="readonly">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Data przyjęcia do firmy</label>
-									<input type="text" class="form-control" id="sumJoinDate" name="sumJoinDate" readonly="readonly">
+									<input type="text" class="form-control datepicker" id="sumJoinDate" name="sumJoinDate" readonly="readonly">
 								</div>
 							</div>
 							
@@ -138,7 +140,8 @@
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>	
+	<script type="text/javascript" src="mask.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

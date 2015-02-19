@@ -9,7 +9,7 @@
 		private $dbname = 'tasks';
 		private $dbuser = 'root';
 		private $dbpass = '';
-		private $dbhost = 'localhost';
+		private $dbhost = '';
 
 		public function dbconnect() {
 			$mysqli = new mysqli($this->dbhost, $this->dbuser, $this->dbpass, $this->dbname);
