@@ -1,4 +1,11 @@
-<?php header('Content-Type: text/html; charset=utf-8'); ?>
+<?php 
+include('controller.php');
+header('Content-Type: text/html; charset=utf-8'); 
+
+$companies = new Company();
+$list = $companies->getCompanies();
+
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -12,17 +19,17 @@
 		<div class="row">
   			<div class="col-md-6 col-md-offset-3">
   				<h1 class="form-header">Krok 1 - dane firmy</h1>
-  					<form action="controller.php" method="post">
+  					<form action="save.php" method="post">
 	  					<div id="choose-firm">
 		  					<div class="form-group">
 							    <label for="exampleInputEmail1">Wybierz firmę</label>
 				  				<select class="form-control">
-									<option value="0" selected>zero</option>
-									<option value="1">jeden</option>
-									<option value="2">dwa</option>
-									<option value="3">trzy</option>
-									<option value="4">cztery</option>
-									<option value="5">piec</option>
+				  					<option value="0" selected>---</option>
+				  				<?php 
+				  					foreach ($list as $item) {
+				  						echo '<option value="'.$item['id'].'">'.$item['name'].'</option>';
+				  					}				  					
+				  				?>
 								</select>
 							</div>
 							<button type="button" class="btn btn-success go-to-step2" style="display: none">Krok 2 &raquo;</button>
@@ -134,6 +141,9 @@
 							<button type="button" class="btn btn-danger go-to-step1">&laquo; &laquo; Krok 1</button>
 							<button type="button" class="btn btn-danger go-to-step2">&laquo; Krok 2</button>
 							<input type="submit" class="btn btn-primary go-to-step2" value="submit" style="display:none;">
+							<br>
+							<br>
+							<div class="alert alert-danger" role="alert" style="display:none;"><strong>You shall not pass!</strong> Popraw datę!</div>
 						</div>
 				</form>
   			</div>

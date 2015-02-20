@@ -63,11 +63,11 @@ $(document).ready(function() {
 		console.log(dateValidate());
 		if(dateValidate()) {
 			$('input[type="submit"]').show();
-			console.log('yes');
+			$('.alert-danger').hide();
 		}
 		else {
 			$('input[type="submit"]').hide();
-			console.log('no');
+			$('.alert-danger').show();
 		}
 		$('#summary-form').show('slide');
 		$('#new-employee').hide('slide');
