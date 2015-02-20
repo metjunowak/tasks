@@ -15,7 +15,7 @@
 		}
 
 		private function createFirmTable($dbconn) {
-			$dbconn->query("CREATE TABLE zad3_companies(id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, establish_date date, nip int, regon int, PRIMARY KEY (id));");
+			$dbconn->query("CREATE TABLE zad3_companies(id int NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, establish_date date, city varchar(255), nip varchar(255), regon int, PRIMARY KEY (id));");
 			$dbconn->query("CREATE INDEX  date ON zad3_companies (establish_date);");
 		
 		}

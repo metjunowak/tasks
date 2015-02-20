@@ -77,7 +77,7 @@
 		}
 
 	}
-
+	var_dump($_POST);
 	$employee = new Employee($_POST['sumName'], $_POST['sumSurname'], $_POST['sumDoB'], $_POST['sumJoinDate']);
 
 	if(!isset($_POST['sumCompanyNameSelId'])) {

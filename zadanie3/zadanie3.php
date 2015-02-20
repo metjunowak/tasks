@@ -1,3 +1,4 @@
+<?php header('Content-Type: text/html; charset=utf-8'); ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -40,7 +41,7 @@
 							</div>
 							<div class="form-group">
 								<label for="establishDate">Data powstania</label>
-								<input type="text" class="form-control date" id="establishDate" placeholder="YYY/MM/DD">
+								<input type="text" class="form-control date" id="establishDate" placeholder="YYYY/MM/DD">
 							</div>
 							<div class="form-group">
 								<label for="companyCity">Miasto</label>
@@ -73,7 +74,7 @@
 							</div>
 							<div class="form-group">
 								<label for="joinDate">Data przyjęcia do firmy</label>
-								<input type="text" class="form-control date" id="joinDate" placeholder="YYYY/MM/DD">
+								<input type="date" class="form-control date" id="joinDate" placeholder="YYYY/MM/DD">
 							</div>
 							<button type="button" class="btn btn-danger go-to-step1">&laquo; Krok 1</button>
 							<button type="button" class="btn btn-success go-to-step3">Krok 3 &raquo;</button>
@@ -132,7 +133,7 @@
 							
 							<button type="button" class="btn btn-danger go-to-step1">&laquo; &laquo; Krok 1</button>
 							<button type="button" class="btn btn-danger go-to-step2">&laquo; Krok 2</button>
-							<input type="submit" class="btn btn-primary go-to-step2" value="submit">
+							<input type="submit" class="btn btn-primary go-to-step2" value="submit" style="display:none;">
 						</div>
 				</form>
   			</div>
