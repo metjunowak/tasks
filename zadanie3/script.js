@@ -60,7 +60,7 @@ $(document).ready(function() {
 	});
 
 	$('.go-to-step3').click(function() {
-		console.log(dateValidate());
+		//console.log(dateValidate());
 		if(dateValidate()) {
 			$('input[type="submit"]').show();
 			$('.alert-danger').hide();
@@ -131,6 +131,7 @@ $(document).ready(function() {
 	$('.date').mask('0000/00/00');
 	$('.nip').mask('000-000-00-00');
 	$('.regon').mask('000000000');
+
 
 
 });

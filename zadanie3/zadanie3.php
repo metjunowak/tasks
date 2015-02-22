@@ -140,7 +140,7 @@ $list = $companies->getCompanies();
 							
 							<button type="button" class="btn btn-danger go-to-step1">&laquo; &laquo; Krok 1</button>
 							<button type="button" class="btn btn-danger go-to-step2">&laquo; Krok 2</button>
-							<input type="submit" class="btn btn-primary go-to-step2" value="submit" style="display:none;">
+							<input type="submit" class="btn btn-primary" value="submit" style="display:none;">
 							<br>
 							<br>
 							<div class="alert alert-danger" role="alert" style="display:none;"><strong>You shall not pass!</strong> Popraw datę!</div>
