@@ -48,7 +48,7 @@ $list = $companies->getCompanies();
 							</div>
 							<div class="form-group">
 								<label for="establishDate">Data powstania</label>
-								<input type="text" class="form-control date" id="establishDate" placeholder="YYYY/MM/DD">
+								<input type="date" class="form-control date" id="establishDate" placeholder="YYYY/MM/DD">
 							</div>
 							<div class="form-group">
 								<label for="companyCity">Miasto</label>
@@ -77,7 +77,7 @@ $list = $companies->getCompanies();
 							</div>
 							<div class="form-group">
 								<label for="dateOfBirth">Data urodzenia</label>
-								<input type="text" class="form-control date" id="dateOfBirth" placeholder="YYYY/MM/DD">
+								<input type="date" class="form-control date" id="dateOfBirth" placeholder="YYYY/MM/DD">
 							</div>
 							<div class="form-group">
 								<label for="joinDate">Data przyjęcia do firmy</label>
