@@ -6,9 +6,6 @@ header('Content-Type: text/html; charset=utf-8');
 class Pager {
 	
 	private $items_per_page;
-	private $page;
-	private $all_items;
-
 
 	public function __construct($items = 3) {
 		$this->items_per_page = $items;
@@ -48,12 +45,11 @@ class Pager {
 
 	private function getAll() {
 		$result = $this->dbconn->query("SELECT a.*, COUNT(b.id) AS employees FROM zad3_companies a
-			LEFT JOIN zad3_employees b ON (a.id = b.company_id)
-			GROUP BY b.company_id
-			ORDER BY establish_date DESC, employees DESC");
+										LEFT JOIN zad3_employees b ON (a.id = b.company_id)
+										GROUP BY b.company_id
+										ORDER BY establish_date DESC, employees DESC");
 
-			$this->all_items = $result->num_rows;
-			return $this->all_items;
+		return $result->num_rows;
 	}
 
 	private function getPageLimit() {
@@ -62,19 +58,17 @@ class Pager {
 	}
 	
 
-	public function getResults()
+	private function getResults()
 	{
 
-		$start = (0 +($this->getCurrent() * $this->items_per_page) - $this->items_per_page);
-		$stop = ($this->getCurrent() * $this->items_per_page);
+		$start = $this->getCurrent() * $this->items_per_page - $this->items_per_page;
+		$stop = $this->getCurrent() * $this->items_per_page;
 		$result = $this->dbconn->query("SELECT a.*, COUNT(b.id) AS employees FROM zad3_companies a
 			LEFT JOIN zad3_employees b ON (a.id = b.company_id)
 			GROUP BY b.company_id
 			ORDER BY establish_date DESC, employees DESC
 			LIMIT $start, $stop");
 
-		
-			//var_dump($items);
 			$c_list = array();
 			while($row = $result->fetch_assoc()) {
 				$c_list[] = $row;
@@ -100,12 +94,12 @@ class Pager {
 	public function getCurrent()
 	{
 		if(isset($_GET['p']) && is_numeric($_GET['p'])) {
-			$this->page = $_GET['p'];
+			$page = $_GET['p'];
 		}
 		else {
-			$this->page = 1;
+			$page = 1;
 		}
-		return $this->page;
+		return $page;
 	}
 
 	public function getNext()
@@ -120,7 +114,7 @@ class Pager {
 	}
 }
 
-$a = new Pager(2);
+$a = new Pager(1);
 echo $a->showHTML();
 echo $a->showPaginator();
 
