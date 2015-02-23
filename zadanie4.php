@@ -114,7 +114,7 @@ class Pager {
 	}
 }
 
-$a = new Pager(1);
+$a = new Pager(3);
 echo $a->showHTML();
 echo $a->showPaginator();
 
